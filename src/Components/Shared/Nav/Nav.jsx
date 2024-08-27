@@ -1,9 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '/logo.png';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { FaBagShopping } from 'react-icons/fa6';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(result => {
+      console.log(result);
+      toast.success('Successfully Logout');
+    });
+  };
   const navLinks = (
     <>
       <li>
@@ -82,6 +92,39 @@ const Nav = () => {
           {/* other code */}
         </NavLink>
       </li>
+      {user ? (
+        <li>
+          <NavLink
+            onClick={handleLogOut}
+            className={({ isActive, isPending }) =>
+              isActive
+                ? 'active btn border-2 border-blue-500 bg-gray-100 text-blue-300 font-bold'
+                : isPending
+                ? 'pending '
+                : 'btn'
+            }
+          >
+            Log Out
+            {/* other code */}
+          </NavLink>
+        </li>
+      ) : (
+        <li>
+          <NavLink
+            to={'/login'}
+            className={({ isActive, isPending }) =>
+              isActive
+                ? 'active btn border-2 border-blue-500 bg-gray-100 text-blue-300 font-bold'
+                : isPending
+                ? 'pending '
+                : 'btn'
+            }
+          >
+            Login
+            {/* other code */}
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -126,12 +169,20 @@ const Nav = () => {
         <div className="flex items-center gap-2">
           <div className="relative">
             {' '}
-            <input type="text" name="" id="" className="input rounded-lg" />
+            <input
+              type="text"
+              name=""
+              id=""
+              className="input w-40 rounded-lg"
+            />
             <FaMagnifyingGlass className="absolute left-5 top-4" />
           </div>
-          <button className="btn w-20">
-            <FaBagShopping />
-          </button>
+          <Link to={'/orders'}>
+            {' '}
+            <button className="btn w-20">
+              <FaBagShopping />
+            </button>
+          </Link>
           <button className="btn py-2 border-orange-400 border-2 text-orange-500 font-bold">
             Appointment
           </button>

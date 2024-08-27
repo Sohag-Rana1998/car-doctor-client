@@ -6,6 +6,11 @@ import About from '../Pages/About/About';
 import Service from '../Pages/Service/Service';
 import Blog from '../Pages/Blog/Blog';
 import Contact from '../Pages/Contact/Contact';
+import Login from '../Pages/Login/Login';
+import Register from '../Pages/Register/Register';
+import PrivateRoute from './PrivateRoute';
+import CheckOut from '../Pages/CheckOut/CheckOut';
+import Orders from '../Pages/Orders/Orders';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +36,27 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <Contact></Contact>,
+        element: (
+          <PrivateRoute>
+            <Contact></Contact>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/login',
+        element: <Login></Login>,
+      },
+      {
+        path: '/register',
+        element: <Register></Register>,
+      },
+      {
+        path: '/checkout/:id',
+        element: <CheckOut></CheckOut>,
+      },
+      {
+        path: 'orders',
+        element: <Orders></Orders>,
       },
     ],
   },

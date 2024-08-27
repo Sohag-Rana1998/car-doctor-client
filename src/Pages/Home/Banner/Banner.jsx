@@ -17,7 +17,7 @@ export function Banner() {
             color="white"
             size="lg"
             onClick={handlePrev}
-            className="!absolute bottom-10 right-32 active:bg-orange-700 disabled:opacity-100  rounded-full p-8 -translate-y-2/4"
+            className="!absolute bottom-10 right-36 bg-orange-700 active:bg-orange-700 disabled:opacity-100 !disabled:active:bg-orange-700   !bg-opacity-100 rounded-full p-8 -translate-y-2/4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export function Banner() {
             color="white"
             size="lg"
             onClick={handleNext}
-            className="!absolute !active:bg-[#FF3811] bottom-10 right-16 rounded-full p-8 -translate-y-2/4"
+            className="!absolute bg-orange-700 bottom-10 right-16 active:bg-orange-700 disabled:opacity-100 !disabled:active:bg-orange-700   !bg-opacity-100 rounded-full p-8  -translate-y-2/4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
